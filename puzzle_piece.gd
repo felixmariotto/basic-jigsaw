@@ -1,29 +1,68 @@
 extends Area2D
 
 @export var texture: Resource
-@export var width: int
-@export var height: int
+@export var size: Vector2
 @export var offset: Vector2
 @export var coordinate: Vector2
 @export var grid_size: Vector2
 
+var rand = randf()
+
+func _process(delta: float) -> void:
+	position.x += rand
+	position.y += rand
+
+#######
+
 func setup():
 	
-	# Set piece size
-	$CollisionShape2D.shape.size = Vector2( width, height )
-	$ColorRect.custom_minimum_size = Vector2( width, height )
+	# Create a quad mesh
+	$MeshInstance2D.mesh = get_quad_mesh( coordinate, grid_size )
 	
 	# Set the shader uniforms
-	$ColorRect.material.set_shader_parameter( 'tex', texture )
-	$ColorRect.material.set_shader_parameter( 'coordinate', coordinate )
-	$ColorRect.material.set_shader_parameter( 'grid_size', grid_size )
-	print( coordinate / grid_size )
+	$MeshInstance2D.material.set_shader_parameter( 'tex', texture )
+	
 	# Set the piece position
 	position = offset
+	scale = size
 	
-"""
-piece.texture = puzzle_image
-piece.width = piece_width
-piece.height = piece_height
-piece.offset = Vector2( ( puzzle_siz
-"""
+########
+
+func get_quad_mesh( coordinate, grid_size ):
+	
+	var my_mesh = ArrayMesh.new()
+
+	# Define vertex format (Position + UV)
+	var arrays = []
+	arrays.resize( Mesh.ARRAY_MAX )
+
+	# Define vertices (quad corners)
+	var vertices = PackedVector3Array([
+		Vector3(0, 0, 0),
+		Vector3(1, 0, 0),
+		Vector3(1, 1, 0),
+		Vector3(0, 1, 0)
+	])
+
+	# Define UVs (custom UV mapping)
+	var uvs = PackedVector2Array([
+		coordinate / grid_size,
+		Vector2(coordinate.x / grid_size.x + 1.0 / grid_size.x, coordinate.y / grid_size.y),
+		coordinate / grid_size + Vector2(1.0, 1.0) / grid_size,
+		Vector2(coordinate.x / grid_size.x, coordinate.y / grid_size.y + 1.0 / grid_size.y)
+	])
+
+	# Define indices (order in which vertices are connected)
+	var indices = PackedInt32Array([
+		0, 1, 2,  0, 2, 3
+	])
+
+	# Assign to array
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_TEX_UV] = uvs
+	arrays[Mesh.ARRAY_INDEX] = indices
+
+	# Create mesh surface
+	my_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+
+	return my_mesh

@@ -43,8 +43,7 @@ func create_puzzle_from_image( image ):
 		for iy in pieces_in_y:
 			var piece = PuzzlePiece.instantiate()
 			piece.texture = puzzle_image
-			piece.width = piece_width
-			piece.height = piece_height
+			piece.size = Vector2( piece_width, piece_height )
 			piece.offset = Vector2( ( puzzle_size.x / pieces_in_x ) * ix, ( puzzle_size.y / pieces_in_y ) * iy )
 			piece.coordinate = Vector2( ix, iy )
 			piece.grid_size = Vector2( pieces_in_x, pieces_in_y )

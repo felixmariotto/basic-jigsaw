@@ -5,10 +5,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgrtf"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uv0v8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfp8d"]
 shader = ExtResource("2_bfp8d")
-shader_parameter/coordinate = Vector2(0, 0)
-shader_parameter/grid_size = Vector2(0, 0)
 
 [node name="PuzzlePiece" type="Area2D"]
 script = ExtResource("1_fgrtf")
@@ -16,7 +14,5 @@ script = ExtResource("1_fgrtf")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fgrtf")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_uv0v8")
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+material = SubResource("ShaderMaterial_bfp8d")
