@@ -10,11 +10,15 @@ enum Difficulty {EASY, NORMAL, HARD}
 @export var hard_target_pieces_num = 1000
 @export_group("")
 
+var PuzzlePiece = preload("res://puzzle_piece.tscn")
+
 func _ready() -> void:
 	create_puzzle_from_image( puzzle_image )
 
 
 func create_puzzle_from_image( image ):
+	
+	# Compute the size of the parts, and the number of parts in each rows and column of the puzzle.
 	
 	var puzzle_size = image.get_size()
 	var parts_num = null
@@ -28,12 +32,21 @@ func create_puzzle_from_image( image ):
 	# we want pieces as square-like as possible
 	var target_piece_length = sqrt( target_piece_area )
 	
-	var parts_in_x = round( puzzle_size.x / target_piece_length )
-	var parts_in_y = round( puzzle_size.y / target_piece_length )
-	var piece_width = puzzle_size.x / parts_in_x
-	var piece_height = puzzle_size.y / parts_in_y
+	var pieces_in_x = round( puzzle_size.x / target_piece_length )
+	var pieces_in_y = round( puzzle_size.y / target_piece_length )
+	var piece_width = puzzle_size.x / pieces_in_x
+	var piece_height = puzzle_size.y / pieces_in_y
 	
-	print( "parts_in_x  ", parts_in_x )
-	print( "parts_in_y  ", parts_in_y )
-	print( "piece_width  ", piece_width )
-	print( "piece_height  ", piece_height )
+	# Instantiate each piece
+	
+	for ix in pieces_in_x:
+		for iy in pieces_in_y:
+			var piece = PuzzlePiece.instantiate()
+			piece.texture = puzzle_image
+			piece.width = piece_width
+			piece.height = piece_height
+			piece.offset = Vector2( ( puzzle_size.x / pieces_in_x ) * ix, ( puzzle_size.y / pieces_in_y ) * iy )
+			piece.coordinate = Vector2( ix, iy )
+			piece.grid_size = Vector2( pieces_in_x, pieces_in_y )
+			piece.setup()
+			add_child( piece )
