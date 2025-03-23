@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dqk4rxp3at55x"]
+
+[node name="PuzzlePiece" type="Area2D"]
