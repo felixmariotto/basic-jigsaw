@@ -13,6 +13,7 @@ script = ExtResource("1_fgrtf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fgrtf")
+disabled = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_bfp8d")

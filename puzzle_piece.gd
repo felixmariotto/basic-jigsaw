@@ -6,18 +6,13 @@ extends Area2D
 @export var coordinate: Vector2
 @export var grid_size: Vector2
 
-var rand = randf()
-
-func _process(delta: float) -> void:
-	position.x += rand
-	position.y += rand
 
 #######
 
 func setup():
 	
 	# Create a quad mesh
-	$MeshInstance2D.mesh = get_quad_mesh( coordinate, grid_size )
+	$MeshInstance2D.mesh = get_quad_mesh()
 	
 	# Set the shader uniforms
 	$MeshInstance2D.material.set_shader_parameter( 'tex', texture )
@@ -28,7 +23,7 @@ func setup():
 	
 ########
 
-func get_quad_mesh( coordinate, grid_size ):
+func get_quad_mesh():
 	
 	var my_mesh = ArrayMesh.new()
 
