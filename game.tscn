@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddrdwu6rw1ixu"]
+
+[ext_resource type="Script" uid="uid://cpvagwp8hlg65" path="res://puzzle_selector.gd" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://c5lk5eckpw5a4" path="res://images/garage_bike_venom_creationedits.jpg" id="2_7jktm"]
+[ext_resource type="Texture2D" uid="uid://3nhun8fliy11" path="res://images/house_in_flowers_venom_creationedits.jpg" id="3_ryrav"]
+[ext_resource type="Texture2D" uid="uid://1cktxbvsm1x8" path="res://images/prairie_house_venom_creationedits.jpg" id="4_eow3j"]
+[ext_resource type="Texture2D" uid="uid://6qxded17botf" path="res://images/tokyo_winter_venom_creationedits.jpg" id="5_j5wjh"]
+
+[node name="Game" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SelectPuzzle" type="Label" parent="CanvasLayer"]
+offset_left = 536.0
+offset_top = 329.0
+offset_right = 1380.0
+offset_bottom = 410.0
+theme_override_font_sizes/font_size = 46
+text = "Select a puzzle to start again:"
+horizontal_alignment = 1
+
+[node name="PuzzleSelector" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 152.0
+offset_top = 425.0
+offset_right = 1774.0
+offset_bottom = 757.0
+script = ExtResource("1_80nbo")
+images = Array[Texture2D]([ExtResource("2_7jktm"), ExtResource("3_ryrav"), ExtResource("4_eow3j"), ExtResource("5_j5wjh")])

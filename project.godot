@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="basic jigsaw"
-run/main_scene="uid://6i2pihufvxkm"
+run/main_scene="uid://ddrdwu6rw1ixu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
