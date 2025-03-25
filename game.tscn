@@ -24,5 +24,9 @@ offset_left = 152.0
 offset_top = 425.0
 offset_right = 1774.0
 offset_bottom = 757.0
+alignment = 1
 script = ExtResource("1_80nbo")
 images = Array[Texture2D]([ExtResource("2_7jktm"), ExtResource("3_ryrav"), ExtResource("4_eow3j"), ExtResource("5_j5wjh")])
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PuzzleSelector"]
+layout_mode = 2
