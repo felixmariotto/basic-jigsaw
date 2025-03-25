@@ -2,6 +2,8 @@ extends HBoxContainer
 
 @export var images: Array[Texture2D]
 
+signal picked_new_puzzle
+
 func _ready() -> void:
 	for image in images:
 		var textureRect = TextureRect.new()
@@ -16,7 +18,7 @@ func _on_interact_texture_rect(event, image):
 		restart_puzzle_with_texture(image)
 
 func restart_puzzle_with_texture(image):
-	print(image)
+	picked_new_puzzle.emit(image)
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
