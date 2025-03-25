@@ -17,3 +17,7 @@ func _on_interact_texture_rect(event, image):
 
 func restart_puzzle_with_texture(image):
 	print(image)
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		get_parent().visible = not get_parent().visible
