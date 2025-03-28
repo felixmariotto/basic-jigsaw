@@ -9,15 +9,19 @@ extends Area2D
 
 #######
 
+func _ready() -> void:
+	connect("input_event", handle_input)
+
+func handle_input(event):
+	print('bla')
+
+# create a basic square mesh with a square collision shape, set the texture to the mesh.
 func setup():
 	
-	# Create a quad mesh
 	$MeshInstance2D.mesh = get_quad_mesh()
-	
-	# Set the shader uniforms
 	$MeshInstance2D.material.set_shader_parameter( 'tex', texture )
-	
-	# Set the piece position
+	$CollisionShape2D.shape.size = Vector2(1.0, 1.0)
+	$CollisionShape2D.position = Vector2(0.5, 0.5)
 	position = offset
 	scale = size
 	

@@ -10,6 +10,8 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ryrav")
 
+[node name="PuzzleArea" type="Node2D" parent="."]
+
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="SelectPuzzle" type="Label" parent="GUI"]

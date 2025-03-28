@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://c2h668j8gojy" path="res://puzzle_piece.gdshader" id="2_bfp8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgrtf"]
+size = Vector2(8, 8)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfp8d"]
 shader = ExtResource("2_bfp8d")
