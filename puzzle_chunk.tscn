@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx1fh668l8e7g"]
+
+[ext_resource type="Script" uid="uid://cn6up67jpr4ly" path="res://puzzle_chunk.gd" id="1_utcho"]
+
+[node name="PuzzleChunk" type="Node2D"]
+script = ExtResource("1_utcho")

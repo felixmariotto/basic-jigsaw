@@ -11,6 +11,8 @@ enum Difficulty {EASY, NORMAL, HARD}
 @export_group("")
 
 var PuzzlePiece = preload("res://puzzle_piece.tscn")
+var PuzzleChunk = preload("res://puzzle_chunk.tscn")
+var puzzleChunks = []
 
 func _ready() -> void:
 	create_puzzle_from_image( puzzle_image )
@@ -39,7 +41,9 @@ func create_puzzle_from_image( image ):
 	# Instantiate each piece
 	
 	for ix in pieces_in_x:
+		
 		for iy in pieces_in_y:
+			
 			var piece = PuzzlePiece.instantiate()
 			piece.texture = puzzle_image
 			piece.size = Vector2( piece_width, piece_height )
@@ -47,4 +51,8 @@ func create_puzzle_from_image( image ):
 			piece.coordinate = Vector2( ix, iy )
 			piece.grid_size = Vector2( pieces_in_x, pieces_in_y )
 			piece.setup()
-			add_child( piece )
+			
+			# add the piece to a chunk, so that chunks of pieces can later be merged to assemble the puzzle
+			var puzzle_chunk = PuzzleChunk.instantiate()
+			puzzle_chunk.add_child( piece )
+			add_child( puzzle_chunk )

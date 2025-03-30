@@ -15,11 +15,12 @@ var click_offset = 0
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		mouse_is_pulling = event.pressed
-		click_offset = event.position - position
+		click_offset = event.position - get_parent().position
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_is_pulling:
-		position = event.position - click_offset
+		# a piece parent must be a chunk
+		get_parent().position = event.position - click_offset
 	# in case the mouse button is released outside of the Area2D
 	if event is InputEventMouseButton and event.pressed == false:
 		mouse_is_pulling = false
