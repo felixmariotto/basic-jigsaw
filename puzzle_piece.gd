@@ -6,6 +6,7 @@ extends Area2D
 @export var coordinate: Vector2
 @export var grid_size: Vector2
 
+signal release
 
 #######
 
@@ -13,17 +14,21 @@ var mouse_is_pulling = false
 var click_offset = 0
 
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		mouse_is_pulling = event.pressed
+	if event is InputEventMouseButton and event.pressed == true:
+		mouse_is_pulling = true
 		click_offset = event.position - get_parent().position
+	elif event is InputEventMouseButton and event.pressed == false and mouse_is_pulling == true:
+		mouse_is_pulling == false
+		release.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_is_pulling:
 		# a piece parent must be a chunk
 		get_parent().position = event.position - click_offset
 	# in case the mouse button is released outside of the Area2D
-	if event is InputEventMouseButton and event.pressed == false:
+	if event is InputEventMouseButton and event.pressed == false and mouse_is_pulling == true:
 		mouse_is_pulling = false
+		release.emit()
 
 # create a basic square mesh with a square collision shape, set the texture to the mesh.
 func setup():
