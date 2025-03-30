@@ -15,3 +15,8 @@ func get_bbox():
 		rect2.expand( child_position + child_size )
 	
 	return rect2
+
+func merge_with( chunk ):
+	for child in chunk.get_children():
+		chunk.remove_child( child )
+		add_child( child )

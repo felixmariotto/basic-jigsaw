@@ -98,5 +98,4 @@ func handle_release():
 			var tested_chunk = puzzle_chunks[j]
 			
 			if base_chunk.position.distance_to( tested_chunk.position ) < fitting_tolerence:
-				pass
-				print( "fit !" )
+				base_chunk.merge_with( tested_chunk )
