@@ -9,11 +9,8 @@ extends Area2D
 
 #######
 
-func _ready() -> void:
-	connect("input_event", handle_input)
-
-func handle_input(event):
-	print('bla')
+func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	print(event)
 
 # create a basic square mesh with a square collision shape, set the texture to the mesh.
 func setup():
@@ -24,9 +21,8 @@ func setup():
 	$CollisionShape2D.position = Vector2(0.5, 0.5)
 	position = offset
 	scale = size
-	
-########
 
+# get a quad mesh with the appropriate UV mapping to display just a part of the whole jigsaw.
 func get_quad_mesh():
 	
 	var my_mesh = ArrayMesh.new()

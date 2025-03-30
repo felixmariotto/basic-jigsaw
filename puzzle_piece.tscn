@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://c2h668j8gojy" path="res://puzzle_piece.gdshader" id="2_bfp8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgrtf"]
-size = Vector2(8, 8)
+size = Vector2(148, 116)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfp8d"]
 shader = ExtResource("2_bfp8d")
@@ -13,8 +13,8 @@ shader = ExtResource("2_bfp8d")
 script = ExtResource("1_fgrtf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(70, 54)
 shape = SubResource("RectangleShape2D_fgrtf")
-disabled = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 material = SubResource("ShaderMaterial_bfp8d")
