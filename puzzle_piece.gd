@@ -9,14 +9,27 @@ extends Area2D
 
 #######
 
+var mouse_is_pulling = false
+var click_offset = 0
+
 func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	print(event)
+	if event is InputEventMouseButton:
+		mouse_is_pulling = event.pressed
+		click_offset = event.position - position
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion and mouse_is_pulling:
+		position = event.position - click_offset
+	# in case the mouse button is released outside of the Area2D
+	if event is InputEventMouseButton and event.pressed == false:
+		mouse_is_pulling = false
 
 # create a basic square mesh with a square collision shape, set the texture to the mesh.
 func setup():
 	
 	$MeshInstance2D.mesh = get_quad_mesh()
 	$MeshInstance2D.material.set_shader_parameter( 'tex', texture )
+	
 	$CollisionShape2D.shape.size = Vector2(1.0, 1.0)
 	$CollisionShape2D.position = Vector2(0.5, 0.5)
 	position = offset

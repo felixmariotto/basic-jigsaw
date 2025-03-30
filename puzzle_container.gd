@@ -15,7 +15,6 @@ var PuzzlePiece = preload("res://puzzle_piece.tscn")
 func _ready() -> void:
 	create_puzzle_from_image( puzzle_image )
 
-
 func create_puzzle_from_image( image ):
 	
 	# Compute the size of the parts, and the number of parts in each rows and column of the puzzle.
