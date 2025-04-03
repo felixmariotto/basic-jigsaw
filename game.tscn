@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddrdwu6rw1ixu"]
+[gd_scene load_steps=8 format=3 uid="uid://ddrdwu6rw1ixu"]
 
 [ext_resource type="Script" uid="uid://cpvagwp8hlg65" path="res://puzzle_selector.gd" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://b4yqdo6yj1agb" path="res://game.gd" id="1_ryrav"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://3nhun8fliy11" path="res://images/house_in_flowers_venom_creationedits.jpg" id="3_ryrav"]
 [ext_resource type="Texture2D" uid="uid://1cktxbvsm1x8" path="res://images/prairie_house_venom_creationedits.jpg" id="4_eow3j"]
 [ext_resource type="Texture2D" uid="uid://6qxded17botf" path="res://images/tokyo_winter_venom_creationedits.jpg" id="5_j5wjh"]
+[ext_resource type="Script" uid="uid://b6y0o8rfejpsn" path="res://camera_2d.gd" id="7_eow3j"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ryrav")
@@ -31,3 +32,6 @@ offset_bottom = 757.0
 alignment = 1
 script = ExtResource("1_80nbo")
 images = Array[Texture2D]([ExtResource("2_7jktm"), ExtResource("3_ryrav"), ExtResource("4_eow3j"), ExtResource("5_j5wjh")])
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
+script = ExtResource("7_eow3j")

@@ -6,6 +6,7 @@ extends Area2D
 @export var coordinate: Vector2
 @export var grid_size: Vector2
 
+signal picked
 signal release
 
 #######
@@ -13,15 +14,21 @@ signal release
 var mouse_is_pulling = false
 var click_offset = 0
 
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.pressed == true:
-		mouse_is_pulling = true
-		click_offset = event.position - get_parent().position
-	elif event is InputEventMouseButton and event.pressed == false and mouse_is_pulling == true:
-		mouse_is_pulling == false
-		release.emit()
+func _ready() -> void:
+	var camera = get_tree().get_nodes_in_group("camera")[0]
+	self.picked.connect( camera._on_puzzle_piece_picked )
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+	if event is InputEventMouseButton and event.button_index == 1:
+		if event.pressed == true:
+			mouse_is_pulling = true
+			click_offset = event.position - get_parent().position
+			picked.emit()
+		elif event.pressed == false and mouse_is_pulling == true:
+			mouse_is_pulling == false
+			release.emit()
+
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_is_pulling:
 		# a piece parent must be a chunk
 		get_parent().position = event.position - click_offset
