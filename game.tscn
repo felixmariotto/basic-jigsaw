@@ -35,3 +35,4 @@ images = Array[Texture2D]([ExtResource("2_7jktm"), ExtResource("3_ryrav"), ExtRe
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 script = ExtResource("7_eow3j")
+zoom_wheel_and_and_down_steps = 7
