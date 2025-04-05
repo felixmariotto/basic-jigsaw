@@ -52,7 +52,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	elif event is InputEventMouseMotion and is_dragging:
 		var offset = drag_start_viewport_pos - event.position
-		position = drag_start_camera_pos + offset
+		position = drag_start_camera_pos + offset / zoom.x
 
 # connected from PuzzlePiece's script when instantiated
 func _on_puzzle_piece_picked():

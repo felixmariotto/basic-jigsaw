@@ -22,7 +22,7 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 	if event is InputEventMouseButton and event.button_index == 1:
 		if event.pressed == true:
 			mouse_is_pulling = true
-			click_offset = event.position - get_parent().position
+			click_offset = get_mouse_world_pos() - get_parent().position
 			picked.emit()
 		elif event.pressed == false and mouse_is_pulling == true:
 			mouse_is_pulling == false
@@ -31,11 +31,15 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and mouse_is_pulling:
 		# a piece parent must be a chunk
-		get_parent().position = event.position - click_offset
+		get_parent().position = get_mouse_world_pos() - click_offset
 	# in case the mouse button is released outside of the Area2D
 	if event is InputEventMouseButton and event.pressed == false and mouse_is_pulling == true:
 		mouse_is_pulling = false
 		release.emit()
+
+func get_mouse_world_pos():
+	var pos = get_viewport().get_camera_2d().get_global_mouse_position()
+	return pos
 
 # create a basic square mesh with a square collision shape, set the texture to the mesh.
 func setup():
