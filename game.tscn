@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddrdwu6rw1ixu"]
+[gd_scene load_steps=10 format=3 uid="uid://ddrdwu6rw1ixu"]
 
 [ext_resource type="Script" uid="uid://cpvagwp8hlg65" path="res://puzzle_selector.gd" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://b4yqdo6yj1agb" path="res://game.gd" id="1_ryrav"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://6qxded17botf" path="res://images/tokyo_winter_venom_creationedits.jpg" id="5_j5wjh"]
 [ext_resource type="Script" uid="uid://b6y0o8rfejpsn" path="res://camera_2d.gd" id="7_eow3j"]
 [ext_resource type="Texture2D" uid="uid://ci1vxbov7y76r" path="res://icons/up-arrow.png" id="7_j5wjh"]
+[ext_resource type="PackedScene" uid="uid://dkiiljxw6t3x1" path="res://player.tscn" id="9_vef74"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_ryrav")
@@ -61,3 +62,5 @@ texture = ExtResource("7_j5wjh")
 [node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 script = ExtResource("7_eow3j")
 zoom_wheel_and_and_down_steps = 7
+
+[node name="Player" parent="." instance=ExtResource("9_vef74")]
